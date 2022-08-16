@@ -1,15 +1,21 @@
-import React from 'react';
-import { NuiProvider } from 'react-fivem-hooks';
-import styled from 'styled-components';
-import { IPhoneSettings } from '@project-error/npwd-types';
-import { i18n } from 'i18next';
-import { Theme, StyledEngineProvider, ThemeProvider, Typography, Box } from '@mui/material';
-import MailList from './components/MailList';
-import { RecoilRoot } from 'recoil';
-import MailModal from './components/MailModal';
-import Header from './components/Header';
-import { PhoneSnackbar } from './snackbar/PhoneSnackbar';
-import SnackbarProvider from './snackbar/SnackbarProvider';
+import React from "react";
+import { NuiProvider } from "react-fivem-hooks";
+import styled from "styled-components";
+import { IPhoneSettings } from "@project-error/npwd-types";
+import { i18n } from "i18next";
+import {
+  Theme,
+  StyledEngineProvider,
+  ThemeProvider,
+  Typography,
+  Box,
+} from "@mui/material";
+import MailList from "./components/MailList";
+import { RecoilRoot } from "recoil";
+import MailModal from "./components/MailModal";
+import Header from "./components/Header";
+import { PhoneSnackbar } from "./snackbar/PhoneSnackbar";
+import SnackbarProvider from "./snackbar/SnackbarProvider";
 
 const Container = styled.div<{ isDarkMode: any }>`
   flex: 1;
@@ -32,22 +38,22 @@ interface AppProps {
 }
 
 const App = (props: AppProps) => {
-  const isDarkMode = props.theme.palette.mode === 'dark';
+  const isDarkMode = props.theme.palette.mode === "dark";
 
   return (
     <RecoilRoot>
-      <SnackbarProvider>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={props.theme}>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={props.theme}>
+          <SnackbarProvider>
             <PhoneSnackbar />
             <Container isDarkMode={isDarkMode}>
               <Header />
               <MailModal />
               <MailList isDarkMode={isDarkMode} />
             </Container>
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </SnackbarProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </RecoilRoot>
   );
 };
